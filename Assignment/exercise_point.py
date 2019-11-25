@@ -1,4 +1,3 @@
-"""Rewrite distance function from Fruitful functions"""
 import math
 import time
 from matplotlib import pyplot as plt
