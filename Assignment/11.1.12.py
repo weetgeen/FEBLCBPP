@@ -1,6 +1,6 @@
 """Rewrite distance function from Fruitful functions"""
 import math
-import pandas as pd
+import time
 from matplotlib import pyplot as plt
 
 
@@ -47,11 +47,40 @@ class Point:
 
 
 
-punt = Point(3,9)
-punt1 = Point(4,6)
+class smsStore:
+    """ SMS tuple should contain:  (has_been_viewed, from_number, time_arrived, text_of_SMS)"""
 
-punt.get_line_to(punt1)
+    def __init__(self):
+        """Create new inbox"""
+        self.messages = [(False, '0031000000', time.gmtime(), 'Your new inbox has been created succesfully')]
 
-punt.plot()
-punt1.plot()
-plt.show()
+    def add_new_arrival(self, number='0031000000', message=''):
+        """Appends a new message to the inbox"""
+        self.messages.append((False, number, time.gmtime(), message))
+
+    def message_count(self):
+        """Returns the number of sms messages in my_inbox """
+        return len(self.messages)
+
+    def get_unread_indexes(self):
+        """Returns all unread messages"""
+        for message in self.messages:
+            if message[0] == False:
+                return message
+
+    def get_message(self, index):
+        try:
+            message = (self.messages[index][1],self.messages[index][2],self.messages[index][3])
+
+            #Change read status to True
+            self.messages.append((True, self.messages[index][1], self.messages[index][2], self.messages[index][3]))
+            self.messages.pop(index)
+
+            #Return(from_number, time_arrived, text_of_sms)
+            return message
+
+        except:
+            return None
+
+    def delete(self, index):
+        self.messages.pop(index)
