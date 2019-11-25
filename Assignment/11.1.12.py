@@ -1,5 +1,8 @@
 """Rewrite distance function from Fruitful functions"""
 import math
+import pandas as pd
+from matplotlib import pyplot as plt
+
 
 class Point:
     """ Create a new Point, at coordinates x, y """
@@ -27,5 +30,28 @@ class Point:
         """Returns the slope of the line joining the origin to the point"""
         return round(math.degrees(abs(math.atan(self.y/self.x))), 2)
 
+    def plot(self):
+        """Plot the point"""
+        plt.plot(self.x, self.y, 'bo')
+
+    def get_line_to(self, provided_point):
+        """Returns tulipe with coefficients of line y = ax + b connecting the provided point to the point """
+
+        """Calculate slope"""
+        a = (provided_point.y - self.y) / (provided_point.x - self.x)
+
+        """Calculate b"""
+        b = self.y - a * self.x
+
+        return (a,b)
+
+
+
 punt = Point(3,9)
-reflection = punt.reflect_x()
+punt1 = Point(4,6)
+
+punt.get_line_to(punt1)
+
+punt.plot()
+punt1.plot()
+plt.show()
