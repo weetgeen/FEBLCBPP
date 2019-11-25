@@ -20,5 +20,4 @@ class Rectangle:
         """Returns the perimeter of a rectangle"""
         return 2 * self.height + 2 * self.width
 
-
 box = Rectangle(exercise_point.Point(0,0) , 100, 200)
