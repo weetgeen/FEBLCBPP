@@ -1,5 +1,5 @@
 """Rewrite distance function from Fruitful functions"""
-
+import math
 
 class Point:
     """ Create a new Point, at coordinates x, y """
@@ -23,8 +23,9 @@ class Point:
 
         return Point(self.x, - self.y)
 
-
-
+    def slope_from_origin(self):
+        """Returns the slope of the line joining the origin to the point"""
+        return round(math.degrees(abs(math.atan(self.y/self.x))), 2)
 
 punt = Point(3,9)
 reflection = punt.reflect_x()
